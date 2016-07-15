@@ -1,8 +1,11 @@
+from sys import argv
 from docx import Document
 from docx.shared import Inches
 
 
-def modify_indents(filename):
+#modifies the indent amount in a .docx file
+def modify_indents(filename, indent_amount):
+
 	#get the document with the given filename
     doc = Document(filename) 
 
@@ -12,9 +15,14 @@ def modify_indents(filename):
         paragraph.text = paragraph.text.lstrip()
         #modify the indentation 
         paragraph_format = paragraph.paragraph_format
-        paragraph_format.left_indent = Inches(0.5)
+        paragraph_format.left_indent = Inches(indent_amount)
 
 	doc.save(filename)
 
+if(len(argv) != 2):
+    print("\nERROR!\nSample Usage: python document_editor.py 2.5\n")
+    quit()
 
-modify_indents('sample.docx')
+script, indent_amount = argv
+
+modify_indents('sample.docx', float(indent_amount))
