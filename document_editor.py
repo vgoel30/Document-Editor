@@ -1,3 +1,5 @@
+import os
+import os.path
 from sys import argv
 from docx import Document
 from docx.shared import Inches
@@ -34,3 +36,17 @@ if not isinstance(indent_amount, float):
 
 #test the function
 modify_indents('sample.docx', float(indent_amount))
+
+#code for iterating over all the .docx files in the directory. 
+#To be relased after modifying font-settings
+
+#iterate over all the files in the directory
+# for file in os.listdir(os.getcwd()):
+#     #get the file name
+#     file_name = os.path.join(os.getcwd(), file)
+#     #we want to proceed forward iff the file is a .docx file
+#     if(file_name[-5:] == '.docx'):
+#         #last safety check to see it is actually a file
+#         if os.path.isfile(file_name):
+#             #get the name of the document without the full path
+#             print(os.path.basename(file_name))
