@@ -7,7 +7,7 @@ from docx.shared import Inches
 
 
 #modifies the indent amount in a .docx file
-def modify_indents(filename, indent_amount):
+def modify_indents(filename, indent_amount, font_size):
 	#get the document with the given filename
     doc = Document(filename) 
 
@@ -22,7 +22,7 @@ def modify_indents(filename, indent_amount):
         for run in paragraph.runs:
             font = run.font
             font.name = "Times New Roman"
-            font.size = Pt(13)
+            font.size = Pt(font_size)
     #save the modified content to the file
 	doc.save(filename)
 
@@ -36,18 +36,22 @@ def is_number(number):
         return False
 
 #if inadequate arguments are provided
-if(len(argv) != 2):
-    print("\nERROR!\nSample Usage: python document_editor.py 2.5\n")
+if(len(argv) != 3):
+    print("\nERROR!\nSample Usage: python document_editor.py 2.5 13\n")
     quit()
 
 #get the command line arguments
-script, indent_amount = argv
+script, indent_amount, font_size = argv
 
 #ensure that the indent amount provided is a float
 if not is_number(indent_amount):
     print("\nERROR: Indent value must be a float\n")
     quit()
 
+#ensure that the font size amount provided is a float
+if not is_number(font_size):
+    print("\nERROR: Font size value must be a float\n")
+    quit()
 
 #iterate over all the files in the directory
 for file in os.listdir(os.getcwd()):
@@ -60,4 +64,4 @@ for file in os.listdir(os.getcwd()):
             #get the name of the document without the full path
             base_name = os.path.basename(file_name)
             #print(base_name)
-            modify_indents(base_name, float(indent_amount))
+            modify_indents(base_name, float(indent_amount), float(font_size))
