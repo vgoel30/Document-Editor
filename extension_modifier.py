@@ -4,6 +4,9 @@ from sys import argv
 #get the original and new extensions as command line arguments
 script, orginal_extension, new_extension = argv
 
+if(len(argv) != 3):
+	print("\nSAMPLE USAGE: python extension_modifier.py .jpeg .png")
+
 #the extension names should have only a single .
 if(orginal_extension.count('.') != 1 or new_extension.count('.') != 1):
 	print("\nProvide proper extension name like: .avi or .png\n")
