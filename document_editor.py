@@ -8,7 +8,6 @@ from docx.shared import Inches
 
 #modifies the indent amount in a .docx file
 def modify_indents(filename, indent_amount):
-
 	#get the document with the given filename
     doc = Document(filename) 
 
@@ -19,18 +18,19 @@ def modify_indents(filename, indent_amount):
         #modify the indentation 
         paragraph_format = paragraph.paragraph_format
         paragraph_format.left_indent = Inches(indent_amount)
-        
+        #for all the different components in the paragraph
         for run in paragraph.runs:
             font = run.font
             font.name = "Times New Roman"
-            font.size = Pt(15)
-
+            font.size = Pt(13)
+    #save the modified content to the file
 	doc.save(filename)
 
+
 #checks to see if the provided value is a float value
-def is_number(s):
+def is_number(number):
     try:
-        float(s)
+        float(number)
         return True
     except ValueError:
         return False
@@ -48,19 +48,16 @@ if not is_number(indent_amount):
     print("\nERROR: Indent value must be a float\n")
     quit()
 
-#test the function
-modify_indents('SAFCR7.docx', float(indent_amount))
-
-#code for iterating over all the .docx files in the directory. 
-#To be relased after modifying font-settings
 
 #iterate over all the files in the directory
-# for file in os.listdir(os.getcwd()):
-#     #get the file name
-#     file_name = os.path.join(os.getcwd(), file)
-#     #we want to proceed forward iff the file is a .docx file
-#     if(file_name[-5:] == '.docx'):
-#         #last safety check to see it is actually a file
-#         if os.path.isfile(file_name):
-#             #get the name of the document without the full path
-#             print(os.path.basename(file_name))
+for file in os.listdir(os.getcwd()):
+    #get the file name
+    file_name = os.path.join(os.getcwd(), file)
+    #we want to proceed forward iff the file is a .docx file
+    if(file_name[-5:] == '.docx'):
+        #last safety check to see it is actually a file
+        if os.path.isfile(file_name):
+            #get the name of the document without the full path
+            base_name = os.path.basename(file_name)
+            #print(base_name)
+            modify_indents(base_name, float(indent_amount))
