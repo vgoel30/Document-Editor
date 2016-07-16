@@ -12,4 +12,6 @@ for file in os.listdir(os.getcwd()):
 	#we want to proceed forward iff the file is a .avi file
 	if(file_name[-4:] == '.avi'):
 			#get the name of the document without the full path
-			print(os.path.basename(file_name))
+			
+			new_name = file_name.replace(".avi",".mkv") 
+			os.rename(file_name,new_name)
