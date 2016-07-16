@@ -1,17 +1,33 @@
 import os
 from sys import argv
 
+#get the original and new extensions as command line arguments
+script, orginal_extension, new_extension = argv
+
+#the extension names should have only a single .
+if(orginal_extension.count('.') != 1 or new_extension.count('.') != 1):
+	print("\nProvide proper extension name like: .avi or .png\n")
+	quit()
+
+#if the previous condition is met, the . should be the first character
+if(orginal_extension[:1] != '.' or new_extension[:1] != '.'):
+	print("\nProvide proper extension name like: .avi or .png\n")
+	quit()
+
+#get the directory name from the user
 directory = raw_input("Give directory name")
+#cd to directory
 os.chdir(directory)
-print(os.getcwd())
 
 #iterate over all the files in the directory
 for file in os.listdir(os.getcwd()):
 	#get the file name
 	file_name = os.path.join(os.getcwd(), file)
-	#we want to proceed forward iff the file is a .avi file
-	if(file_name[-4:] == '.avi'):
-			#get the name of the document without the full path
-			
-			new_name = file_name.replace(".avi",".mkv") 
-			os.rename(file_name,new_name)
+	#get the length of the extension
+	length = len(orginal_extension)
+	#we want to proceed forward iff the file has the same extension as the user desires
+	if(file_name[-length:] == orginal_extension):
+			#get the new name for the file by modifying extesion
+			new_name = file_name.replace(orginal_extension, new_extension)
+			#rename the file 
+			os.rename(file_name, new_name)
