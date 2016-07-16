@@ -2,6 +2,7 @@ import os
 import os.path
 from sys import argv
 from docx import Document
+from docx.shared import Pt
 from docx.shared import Inches
 
 
@@ -18,6 +19,12 @@ def modify_indents(filename, indent_amount):
         #modify the indentation 
         paragraph_format = paragraph.paragraph_format
         paragraph_format.left_indent = Inches(indent_amount)
+        
+        for run in paragraph.runs:
+            font = run.font
+            font.name = "Times New Roman"
+            font.size = Pt(15)
+
 
 	doc.save(filename)
 
@@ -30,12 +37,12 @@ if(len(argv) != 2):
 script, indent_amount = argv
 
 #ensure that the indent amount provided is a float
-if not isinstance(indent_amount, float):
-    print("Indent amount must be a float data type")
-    quit()
+# if not isinstance(indent_amount, float):
+#     print("Indent amount must be a float data type")
+#     quit()
 
 #test the function
-modify_indents('sample.docx', float(indent_amount))
+modify_indents('SAFCR7.docx', float(indent_amount))
 
 #code for iterating over all the .docx files in the directory. 
 #To be relased after modifying font-settings
