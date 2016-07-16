@@ -25,8 +25,15 @@ def modify_indents(filename, indent_amount):
             font.name = "Times New Roman"
             font.size = Pt(15)
 
-
 	doc.save(filename)
+
+#checks to see if the provided value is a float value
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
 
 #if inadequate arguments are provided
 if(len(argv) != 2):
@@ -37,9 +44,9 @@ if(len(argv) != 2):
 script, indent_amount = argv
 
 #ensure that the indent amount provided is a float
-# if not isinstance(indent_amount, float):
-#     print("Indent amount must be a float data type")
-#     quit()
+if not is_number(indent_amount):
+    print("\nERROR: Indent value must be a float\n")
+    quit()
 
 #test the function
 modify_indents('SAFCR7.docx', float(indent_amount))
