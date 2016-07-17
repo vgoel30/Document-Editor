@@ -27,7 +27,7 @@ The command: ``python document_editor.py indent_distance font_size``
 
 
 ###2. extension_modifier.py:
-This script will change the extension of all files of a particular extension in the specified directory to the new extension specified by the user. 
+This script will change the extension of all files of a particular extension in the specified directory to the new extension as specified by the user. 
 
 
 ####How to use
@@ -38,9 +38,7 @@ The command: ``python extension_modifier.py old_extension new_extension``
 
 The script will then prompt for the directory path in which the modification is to be performed.
 
-**NOTE**: Indent distance is in inches and font size is in pt.
-
 ####Sample Usage
-``python extension_modifier.py .jpg .png`` will change all .jpg files in the specified directoy into .png
+``python extension_modifier.py .jpg .png`` will change all .jpg files in the specified directory into .png
 
 
