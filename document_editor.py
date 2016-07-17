@@ -16,13 +16,14 @@ def modify_indents(filename, indent_amount, font_size):
     	#delete all the leading white spaces for new indent
         paragraph.text = paragraph.text.lstrip()
         #modify the indentation 
-        paragraph_format = paragraph.paragraph_format
-        paragraph_format.left_indent = Inches(indent_amount)
-        #for all the different components in the paragraph
-        for run in paragraph.runs:
-            font = run.font
-            font.name = "Times New Roman"
-            font.size = Pt(font_size)
+        if(len(paragraph.text) > 0):
+            paragraph_format = paragraph.paragraph_format
+            paragraph_format.left_indent = Inches(indent_amount)
+            #for all the different components in the paragraph
+            for run in paragraph.runs:
+                font = run.font
+                font.name = "Times New Roman"
+                font.size = Pt(font_size)
     #save the modified content to the file
 	doc.save(filename)
 
