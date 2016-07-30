@@ -10,6 +10,20 @@ token = 'EAACEdEose0cBAGOyshsApPUtONVwRU7CoYQADE9qZB0d6XkdVw7aCg98glpxuWWyxZBSYg
 facebook_access = fb.graph.api(token)
 #get the graph 'object'
 my_graph = GraphAPI(token)
+#a list of birthday keywords that will help filter birthday messages
+birthday_keywords = ["happy","birthday", "bday", "b\'day", "wish","birth day",
+ "bless", "blessings", "returns"]
+
+#function that does a trivial check on a message to see if it is a birthday wish
+def message_is_birthday_wish(message):
+ 	#get the lower case version of the message for easier checking for keywords
+ 	message = message.lower()
+ 	#go through all the keywords in the birthday keywords list
+ 	for keyword in birthday_keywords:
+ 		#if a keyword exists in the message, exit the function by returning true
+ 		if keyword in message:
+ 			return True
+ 	return False
 
 #the function that will go through the posts and filter the birthday ones and like/comment on them
 def automated_likes():    
@@ -57,5 +71,5 @@ def birthday_is_today():
 
 
 if __name__ == '__main__':
-	print(birthday_is_today())
+	#print(message_is_birthday_wish("HAPPY BIRTHDAY MY BUOY"))
     #automated_likes()
