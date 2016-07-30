@@ -1,4 +1,5 @@
 import fb
+import datetime
 import json
 from facepy import GraphAPI
 
@@ -19,7 +20,7 @@ def automated_likes():
 
     #the list of all the messages (potential brithday wishes)
     message_list = []
-    #filered posts will be identified by their id
+    #filered posts will be identified by their id 
     id_list = []
     #access the feed's data index to get all the posts
     for post in feed['data']:
@@ -37,5 +38,24 @@ def automated_likes():
     #testing the like functionality
     facebook_access.publish(cat="likes", id=id_list[0])
 
+#the function checks if today is actually the user's birthday by checking today's date and the facebook provide birthday
+def birthday_is_today():
+	#this query gets the user's birthday
+	birthday_query = "/me/?fields=birthday"
+	#get the birthday JSON object from the graph API
+	birthday_object = my_graph.get(birthday_query)
+	#get the whole birthday string (mm/dd/yyyy) format
+	birthday_string = birthday_object['birthday']
+	#get the birthday month in integer format
+	birthday_month = int(birthday_string.split('/')[0])
+	#get the birthday year in integer format
+	birthday_date = int(birthday_string.split('/')[1])
+	#get today's date
+	today_date = datetime.date.today()
+	#return true iff today is birthday
+	return birthday_month == int(today_date.month) and birthday_date == int(today_date.day)
+
+
 if __name__ == '__main__':
-    automated_likes()
+	print(birthday_is_today())
+    #automated_likes()
