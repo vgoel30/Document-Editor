@@ -2,13 +2,16 @@ import fb
 import json
 from facepy import GraphAPI
 
+#some constants that will be of use in the script
+#the access token
+token = 'EAACEdEose0cBAGOyshsApPUtONVwRU7CoYQADE9qZB0d6XkdVw7aCg98glpxuWWyxZBSYg88BIbMORJ1p6u3UJw1qCxRih6Fxxco13jFQxNovk7lfYK2Vb9d0kSPOcyAPLIhlA3IySGRGhCe983pPkO600ZBEM2k6xAGMZAqmgZDZD'
+#connect to the facebook graph api 
+facebook_access = fb.graph.api(token)
+#get the graph 'object'
+my_graph = GraphAPI(token)
+
 #the function that will go through the posts and filter the birthday ones and like/comment on them
-def automated_likes():
-	#the access token
-    token = 'EAACEdEose0cBAGOyshsApPUtONVwRU7CoYQADE9qZB0d6XkdVw7aCg98glpxuWWyxZBSYg88BIbMORJ1p6u3UJw1qCxRih6Fxxco13jFQxNovk7lfYK2Vb9d0kSPOcyAPLIhlA3IySGRGhCe983pPkO600ZBEM2k6xAGMZAqmgZDZD'
-    #connect to the facebook graph api 
-    facebook_access = fb.graph.api(token)
-    my_graph = GraphAPI(token)
+def automated_likes():    
     #this query will get you your feed from the  graph
     query = "/me/feed"
     #this will get you your feed
@@ -34,5 +37,5 @@ def automated_likes():
     #testing the like functionality
     facebook_access.publish(cat="likes", id=id_list[0])
 
-
-automated_likes()
+if __name__ == '__main__':
+    automated_likes()
