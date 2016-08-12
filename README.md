@@ -42,3 +42,12 @@ The script will then prompt for the directory path in which the modification is 
 ``python extension_modifier.py .jpg .png`` will change all .jpg files in the specified directory into .png
 
 
+###3. fb_like.py:
+This script will go through all the birthday wishes on Facebook for a particular profile for the current year and like all of them.
+
+####Dependencies
+The script uses *fb* and *facepy* libraries. These can be installed using [pip](https://pypi.python.org/pypi/pip). 
+You will also need an access token for the [facebook graph API](https://developers.facebook.com/tools/explorer)
+
+####Sample Usage
+``python fb_like.py``
