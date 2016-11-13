@@ -15,8 +15,9 @@ def modify_indents(filename, indent_amount, font_size):
     for paragraph in doc.paragraphs:
     	#delete all the leading white spaces for new indent
         paragraph.text = paragraph.text.lstrip()
-        #modify the indentation 
+         #check to see non-empty paragraph
         if(len(paragraph.text) > 0):
+            #modify the indentation
             paragraph_format = paragraph.paragraph_format
             paragraph_format.left_indent = Inches(indent_amount)
             #for all the different components in the paragraph

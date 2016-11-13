@@ -4,6 +4,7 @@ from sys import argv
 #get the original and new extensions as command line arguments
 script, orginal_extension, new_extension = argv
 
+#user must provide the proper arguments
 if(len(argv) != 3):
 	print("\nSAMPLE USAGE: python extension_modifier.py .jpeg .png")
 
@@ -27,9 +28,9 @@ for file in os.listdir(os.getcwd()):
 	#get the file name
 	file_name = os.path.join(os.getcwd(), file)
 	#get the length of the extension
-	length = len(orginal_extension)
+	extension_length = len(orginal_extension)
 	#we want to proceed forward iff the file has the same extension as the user desires
-	if(file_name[-length:] == orginal_extension):
+	if(file_name[-extension_length:] == orginal_extension):
 			#get the new name for the file by modifying extesion
 			new_name = file_name.replace(orginal_extension, new_extension)
 			#rename the file 
