@@ -78,7 +78,6 @@ def automated_likes():
 
 # the function checks if today is actually the user's birthday by checking today's date and the facebook provide birthday
 def birthday_is_today():
-    print('Hello function')
     # this query gets the user's birthday
     birthday_query = "/me/?fields=birthday"
     # get the birthday JSON object from the graph API
